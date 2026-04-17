@@ -5,11 +5,21 @@ const amountInput = document.querySelector("#amount");
 const categoryInput = document.querySelector("#category");
 const list = document.querySelector("#expense-list");
 const setBudgetButton = document.querySelector("#set-budget");
+const budgetInput = document.querySelector("#budget-input");
 const expenses = [];
-const presupuesto = 1000;
+let presupuesto = 0;
 
 setBudgetButton.addEventListener("click", () => {
     console.log("click") 
+    const value = budgetInput.value.trim();
+    if (isNaN(value) || Number(value) <= 0) {
+        alert("Por favor, ingresa un presupuesto válido.");
+        return;
+    }
+    presupuesto = Number(value);
+    localStorage.setItem("presupuesto", presupuesto);
+    document.querySelector("#budget").textContent = presupuesto;
+    updateSummary();
 });
 
 form.addEventListener("submit", (e) => {
@@ -38,6 +48,7 @@ form.addEventListener("submit", (e) => {
     console.log("Gasto registrado:", expense);
     renderExpenses();
     form.reset();
+    updateSummary();
 })
 const renderExpenses = () => {
     list.innerHTML = "";
@@ -60,19 +71,28 @@ list.addEventListener("click", (e) => {
             expenses.splice(index, 1);
             localStorage.setItem("expenses", JSON.stringify(expenses));
             renderExpenses();
+            updateSummary();
         }
     }
 });
 document.addEventListener("DOMContentLoaded", () => {
     const data = localStorage.getItem("expenses");
+    const savedBudget = localStorage.getItem("presupuesto");
+    if (savedBudget) {
+        presupuesto = Number(savedBudget);
+        document.querySelector("#budget").textContent = presupuesto;
+    }
 
     if (data) {
         expenses.push(...JSON.parse(data));
         renderExpenses();
     }
+        updateSummary();
 });
 const updateSummary = () => {
     const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     const restante = presupuesto - total;
     
+    document.querySelector("#total").textContent = total;
+    document.querySelector("#remaining").textContent = restante;
 };
