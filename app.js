@@ -10,6 +10,7 @@ const remainingElement = document.querySelector("#remaining");
 const totalElement = document.querySelector("#total");
 const expenses = [];
 let presupuesto = 0;
+let chart = null;
 
 setBudgetButton.addEventListener("click", () => {
     console.log("click") 
@@ -22,6 +23,7 @@ setBudgetButton.addEventListener("click", () => {
     localStorage.setItem("presupuesto", presupuesto);
     document.querySelector("#budget").textContent = presupuesto;
     updateSummary();
+    updateChart();
 });
 
 form.addEventListener("submit", (e) => {
@@ -51,6 +53,7 @@ form.addEventListener("submit", (e) => {
     renderExpenses();
     form.reset();
     updateSummary();
+    updateChart();
 })
 const renderExpenses = () => {
     list.innerHTML = "";
@@ -74,6 +77,7 @@ list.addEventListener("click", (e) => {
             localStorage.setItem("expenses", JSON.stringify(expenses));
             renderExpenses();
             updateSummary();
+            updateChart();
         }
     }
 });
@@ -90,11 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
         renderExpenses();
     }
         updateSummary();
+        updateChart();
 });
 const updateSummary = () => {
     const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     const restante = presupuesto - total;
-    const remainingElement = document.querySelector("#remaining");
         if (restante < 0) {
             remainingElement.style.color = "red";
         } else {
@@ -115,13 +119,33 @@ const updateChart = () => {
     const labels = Object.keys(groupedExpenses);
     const data = Object.values(groupedExpenses);
     const ctx = document.querySelector("#expense-chart");
-    new Chart(ctx, {
+    if (chart)  {
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
         type: "pie",
         data: {
             labels,
             datasets: [{
-                data: data
+                data: data,
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)"
+                ],
+                borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)"
+                ],
+                borderWidth: 1
             }]
-        }
+        },
     });
 }
