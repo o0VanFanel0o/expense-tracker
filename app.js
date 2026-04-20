@@ -6,6 +6,8 @@ const categoryInput = document.querySelector("#category");
 const list = document.querySelector("#expense-list");
 const setBudgetButton = document.querySelector("#set-budget");
 const budgetInput = document.querySelector("#budget-input");
+const remainingElement = document.querySelector("#remaining");
+const totalElement = document.querySelector("#total");
 const expenses = [];
 let presupuesto = 0;
 
@@ -92,7 +94,34 @@ document.addEventListener("DOMContentLoaded", () => {
 const updateSummary = () => {
     const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     const restante = presupuesto - total;
-    
+    const remainingElement = document.querySelector("#remaining");
+        if (restante < 0) {
+            remainingElement.style.color = "red";
+        } else {
+            remainingElement.style.color = "black";
+        }
     document.querySelector("#total").textContent = total;
     document.querySelector("#remaining").textContent = restante;
 };
+const updateChart = () => {
+    const groupedExpenses = expenses.reduce((groups, expense) => {
+        if (!groups[expense.category]) {
+            groups[expense.category] = 0;
+        }
+        groups[expense.category] += expense.amount;
+        return groups;
+        
+    }, {});
+    const labels = Object.keys(groupedExpenses);
+    const data = Object.values(groupedExpenses);
+    const ctx = document.querySelector("#expense-chart");
+    new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels,
+            datasets: [{
+                data: data
+            }]
+        }
+    });
+}
