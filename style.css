@@ -1,0 +1,58 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding: 20px;
+}
+.left-column, .right-column {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#summary {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+#summary p {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+#expense-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+#expense-list li {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+button {
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: 6px;
+    border-radius: 5px;
+}
+canvas {
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+#expense-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

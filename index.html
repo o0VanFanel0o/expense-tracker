@@ -4,46 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Control de gastos</h1>
-    <span>Ingresa tu presupuesto mensual:</span>
-        <input type="number" id="budget-input" placeholder="Presupuesto total">
-        <button id="set-budget">Establecer Presupuesto</button>
-    </span>
-    <form id="expense-form">
+    <div class="container">
+        <div class="left-column">
+            <h1>Control de gastos</h1>
+            <span id="presupuesto-form">Ingresa tu presupuesto mensual:</span>
+                <input type="number" id="budget-input" placeholder="Presupuesto total">
+                <button id="set-budget">Establecer Presupuesto</button>
+            </span>
+            <form id="expense-form">
+                <input 
+                    type="text"
+                    id="name"
+                    placeholder="Ejemplo: Comida"
+                >
+                <input 
+                    type="number"
+                    id="amount"
+                    placeholder="Ejemplo: 100.00"
+                >
+                <select  id="category">
+                    <option value="">Selecciona una categoría</option>
+                    <option value="food">Comida</option>
+                    <option value="transport">Transporte</option>
+                    <option value="entertainment">Entretenimiento</option>
+                    <option value="other">Otro</option>
+                </select>
+                <button type="submit">Agregar gasto</button>
+                <ul id="expense-list"></ul>
+            </form>
+        </div>
+        <div class="right-column">
 
-        <input 
-            type="text"
-            id="name"
-            placeholder="Ejemplo: Comida"
-        >
-        <input 
-            type="number"
-            id="amount"
-            placeholder="Ejemplo: 100.00"
-        >
-        <select  id="category">
-            <option value="">Selecciona una categoría</option>
-            <option value="food">Comida</option>
-            <option value="transport">Transporte</option>
-            <option value="entertainment">Entretenimiento</option>
-            <option value="other">Otro</option>
-        </select>
-        <button type="submit">Agregar gasto</button>
-
-    </form>
-
-    <ul id="expense-list"></ul>
-
-    <div id="summary">
-        <p>Presupuesto: $<span id="budget"></span></p>
-        <p>Total: $<span id="total"></span></p>
-        <p>Restante: $<span id="remaining"></span></p>
-    </div>
-    
-    <div>
-        <canvas id="expense-chart"></canvas>
+            <div id="summary">
+                <p>Presupuesto: $<span id="budget"></span></p>
+                <p>Total: $<span id="total"></span></p>
+                <p>Restante: $<span id="remaining"></span></p>
+            </div>
+            <div>
+                <canvas id="expense-chart"></canvas>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
