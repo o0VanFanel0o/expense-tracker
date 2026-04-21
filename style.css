@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "Casta-Thin";
+    src: url(Casta-Thin.otf) format("opentype");
+}
+* {
+    font-family: "Casta-Thin", sans-serif;
+}
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -23,12 +30,11 @@
     border-radius: 5px;
     flex: 1;
     text-align: center;
-    font-weight: bold;
 }
 #expense-list {
     list-style: none;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 10px;
     margin-bottom: 10px;
     padding: 10px;
     background-color: white;
@@ -40,11 +46,19 @@
     width: 100%;
 }
 button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    border-radius: 0.5em;
+    background: #ffffff;
+    font-size: 12px;
     cursor: pointer;
-    border: none;
-    background-color: white;
-    padding: 6px;
-    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+}
+
+button:active {
+    color: white;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 canvas {
     max-width: 400px;

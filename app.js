@@ -123,7 +123,7 @@ const updateChart = () => {
         chart.destroy();
     }
     chart = new Chart(ctx, {
-        type: "pie",
+        type: "doughnut",
         data: {
             labels,
             datasets: [{
@@ -144,7 +144,7 @@ const updateChart = () => {
                     "rgba(153, 102, 255, 1)",
                     "rgba(255, 159, 64, 1)"
                 ],
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
     });
