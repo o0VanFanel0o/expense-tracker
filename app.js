@@ -58,20 +58,16 @@ form.addEventListener("submit", (e) => {
 const renderExpenses = () => {
     list.innerHTML = "";
     expenses.forEach((expense) => {
-
         const li = document.createElement("li");
             li.innerHTML = `${expense.name} - $${expense.amount} (${expense.category})
             <button data-id="${expense.id}">❌</button>`;
-
         list.appendChild(li);
     });
 };
 list.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
         const id = Number(e.target.dataset.id);
-
         const index = expenses.findIndex(exp => exp.id === id);
-
         if (index !== -1) {
             expenses.splice(index, 1);
             localStorage.setItem("expenses", JSON.stringify(expenses));
@@ -88,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         presupuesto = Number(savedBudget);
         document.querySelector("#budget").textContent = presupuesto;
     }
-
     if (data) {
         expenses.push(...JSON.parse(data));
         renderExpenses();
@@ -114,7 +109,6 @@ const updateChart = () => {
         }
         groups[expense.category] += expense.amount;
         return groups;
-        
     }, {});
     const labels = Object.keys(groupedExpenses);
     const data = Object.values(groupedExpenses);
