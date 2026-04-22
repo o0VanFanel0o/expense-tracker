@@ -45,6 +45,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    text-align: center;
 }
 button {
     color: #090909;
