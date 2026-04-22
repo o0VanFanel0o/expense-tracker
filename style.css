@@ -30,6 +30,7 @@
     border-radius: 5px;
     flex: 1;
     text-align: center;
+    font-size: 18px;
 }
 #expense-list {
     list-style: none;
@@ -61,12 +62,28 @@ button:active {
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 canvas {
-    max-width: 400px;
-    margin: 0 auto;
     display: block;
+    max-width: 600px;
+    margin: 0 auto;
 }
 #expense-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+input, select {
+    padding: 10px 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+input:focus, select:focus {
+    border-color: #44793f;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #44793f;
 }
