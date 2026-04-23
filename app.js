@@ -13,7 +13,6 @@ let presupuesto = 0;
 let chart = null;
 
 setBudgetButton.addEventListener("click", () => {
-    console.log("click") 
     const value = budgetInput.value.trim();
     if (isNaN(value) || Number(value) <= 0) {
         alert("Por favor, ingresa un presupuesto válido.");
